@@ -8,8 +8,12 @@
 
     <style>
       #app{
-        display: flex;
-        justify-content: center;
+        display: block;
+        margin-left: 20%;
+      }
+
+      #titulo{
+        margin-left: 30px;
       }
       
       .styled-table {
@@ -24,25 +28,32 @@
         overflow: hidden;
       }
 
+      .styled-table thead tr {
+        background-color: 	#483D8B;
+        color: #ffffff;
+        text-align: center;
+      }
+
       .styled-table th,
       .styled-table td {
           padding: 10px 13px;
       }
 
-      .styled-table tr {
+      .styled-table tbody tr {
         border-bottom: 1px solid #dddddd;
+        
       }
 
-      .styled-table tr:nth-of-type(even) {
+      .styled-table tbody tr:nth-of-type(even) {
         background-color: #483D8B;
         color: #ffffff;
       }
 
-      .styled-table tr:nth-of-type(even) a{
+      .styled-table tbody tr:nth-of-type(even) a{
         color: #ffffff;
       }
 
-      .styled-table tr:last-of-type {
+      .styled-table tbody tr:last-of-type {
         border-bottom: 2px solid 	#483D8B;
       }
     </style>
@@ -55,56 +66,43 @@
 
     <script src="libs/react.js"></script>
     <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
 
-    <script> 
+    <script type="text/babel"> 
+      
       ReactDOM.render(
-        // React.createElement('h1', null, 'React!')
-        // React.createElement('h1', {id:'maria-prea'}, 'React!')
-        // React.createElement(
-        //   'h1',
-        //   {id: 'my-heading'},
-        //   React.createElement(
-        //       'span',
-        //       null,
-        //       'React ',
-        //       React.createElement('em', null, 'é muito'),
-        //   ),
-        //   ' massa!'
-        // ),
-        React.createElement(
-          'table',
-          {class: 'styled-table'},
-          React.createElement(
-              'tr',
-              {id: 'linha'},
-              React.createElement(
-                'th',
-                {id: 'coluna'},
-                'teste'
-              ),
-              React.createElement(
-                'th',
-                {id: 'coluna'},
-                'teste'
-              ),
-          ),
-          React.createElement(
-              'tr',
-              {id: 'linha'},
-              React.createElement(
-                'th',
-                {id: 'coluna'},
-                'teste'
-              ),
-              React.createElement(
-                'th',
-                {id: 'coluna'},
-                'teste'
-              ),
-          )
-        ),
+        <MyTable/>
+        ,
         document.getElementById('app')
-      );
+      )
+
+      function MyTable(){
+        return (
+          <div id="app">
+            <Cabecalho/>
+            <table id="tabela" class='styled-table'>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Marca</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <th>Havana</th>
+                  <th>Engenho Anísio Santiago</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>)
+      }
+
+      function Cabecalho(){
+        return (
+          <h1 id="titulo"> Minha tabela de bebidas </h1>
+        )
+      }
     </script>
   </body>
 </html>

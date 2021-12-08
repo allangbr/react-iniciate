@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReactZero</title>
+    <title>ReceitaReact - 2</title>
 
     <style>
       #app{
@@ -13,7 +13,7 @@
       }
 
       #titulo{
-        margin-left: 30px;
+        margin-left: 70px;
       }
       
       .styled-table {
@@ -56,6 +56,11 @@
       .styled-table tbody tr:last-of-type {
         border-bottom: 2px solid 	#483D8B;
       }
+
+      #img {
+        width: 48%;
+        height: auto;
+      }
     </style>
   </head>
 
@@ -68,41 +73,55 @@
     <script src="libs/react-dom.js"></script>
     <script src="libs/babel.js"></script>
 
-    <script type="text/babel"> 
-      
+    <script type="text/babel">
+
+      class ImagemBebidas extends React.Component{
+        render(){
+          return (
+            <img src="https://images.squarespace-cdn.com/content/v1/51ef2bf2e4b02bcf8471333b/1581523243866-90P4C3JNU7BL191AQ4JQ/bebida.jpeg?format=1000w" id="img" alt="pessoas segurando copos de bebida"/>
+          )
+        }
+      }
+
+      class Cabecalho extends React.Component{
+        render(){
+          return (
+          <h1 id="titulo"> {this.props.titulo} </h1>
+          )
+        }
+      }
+    
+      class TabelaBebidas extends React.Component{
+        render(){
+          return (
+            <div id="app">
+              <Cabecalho  titulo="Tabela de Bebidas"/>
+              <table id="tabela" class='styled-table'>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <th>Havana</th>
+                    <th>Engenho Anísio Santiago</th>
+                  </tr>
+                </tbody>
+              </table>
+              <ImagemBebidas/>
+            </div>
+          )
+        }
+      }
+
       ReactDOM.render(
-        <MyTable/>
+        <TabelaBebidas titulo="Tabela de Bebidas"/>
         ,
         document.getElementById('app')
       )
-
-      function MyTable(){
-        return (
-          <div id="app">
-            <Cabecalho/>
-            <table id="tabela" class='styled-table'>
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Marca</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <th>Havana</th>
-                  <th>Engenho Anísio Santiago</th>
-                </tr>
-              </tbody>
-            </table>
-          </div>)
-      }
-
-      function Cabecalho(){
-        return (
-          <h1 id="titulo"> Minha tabela de bebidas </h1>
-        )
-      }
     </script>
   </body>
 </html>

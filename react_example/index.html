@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReceitaReact - 2</title>
+    <title>ReceitaReact - 3</title>
 
     <style>
       #app{
@@ -75,53 +75,78 @@
 
     <script type="text/babel">
 
-      class ImagemBebidas extends React.Component{
-        render(){
-          return (
-            <img src="https://images.squarespace-cdn.com/content/v1/51ef2bf2e4b02bcf8471333b/1581523243866-90P4C3JNU7BL191AQ4JQ/bebida.jpeg?format=1000w" id="img" alt="pessoas segurando copos de bebida"/>
-          )
-        }
+      const ImagemBebidas = () => {
+        return (
+          <img src="https://images.squarespace-cdn.com/content/v1/51ef2bf2e4b02bcf8471333b/1581523243866-90P4C3JNU7BL191AQ4JQ/bebida.jpeg?format=1000w" id="img" alt="pessoas segurando copos de bebida"/>
+        )
       }
 
-      class Cabecalho extends React.Component{
-        render(){
-          return (
-          <h1 id="titulo"> {this.props.titulo} </h1>
-          )
-        }
+      const Titulo = ({titulo}) => {
+        return (
+          <h1 id="titulo"> {titulo} </h1> 
+        )
       }
     
-      class TabelaBebidas extends React.Component{
-        render(){
-          return (
-            <div id="app">
-              <Cabecalho  titulo="Tabela de Bebidas"/>
-              <table id="tabela" class='styled-table'>
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Marca</th>
-                  </tr>
-                </thead>
+      const TabelaBebidas = () => {
+        return (
+          <div id="app">
+            <Titulo titulo="Tabela de Bebidas"/>
+            <table id="tabela" class='styled-table'>
+              <thead>
+                <tr id="cabecalho">
+                </tr>
+              </thead>
 
-                <tbody>
-                  <tr>
-                    <th>Havana</th>
-                    <th>Engenho Anísio Santiago</th>
-                  </tr>
-                </tbody>
-              </table>
-              <ImagemBebidas/>
-            </div>
-          )
-        }
+              <tbody id="conteudo">
+              </tbody>
+            </table>
+            <ImagemBebidas/>
+          </div>
+        )
       }
 
       ReactDOM.render(
-        <TabelaBebidas titulo="Tabela de Bebidas"/>
+        <TabelaBebidas/>
         ,
         document.getElementById('app')
       )
+      
+      const valoresCabecalhos = ["Nome", "Marca", "Teste"]
+
+      const MontaCabecalho = (cabecalhos) => {
+        let tam = cabecalhos.length;
+        let result = '';
+        for(let i=0; i<tam; i++){
+          result += `<th>${cabecalhos[i]}</th>`
+        }
+        return (result)
+      }
+
+      let textCabecalho = MontaCabecalho(valoresCabecalhos);
+      document.getElementById('cabecalho').innerHTML = textCabecalho;
+
+      
+      const valoresConteudos = [["Havana", "Engenho Anísio Santiago", "teste"], ["Brahma", "Puro Malte", "Boa toda"], ["Devassa", "Duplo Malte", "Mais ou menos"]]
+
+      const MontaConteudo = (conteudos) => {
+        let tam = conteudos.length;
+        let result = '';
+        
+        for(let i=0; i<tam; i++){
+          let tam1 = conteudos[i].length;
+          result += '<tr>'
+          for(let j=0; j<tam1; j++){
+            result += `<th>${conteudos[i][j]}</th>`
+          }
+          result += '</tr>';
+        }
+        result += '</tr>';
+        return (result)
+      }
+
+      let textConteudo = MontaConteudo(valoresConteudos);
+      document.getElementById('conteudo').innerHTML = textConteudo;
+      
     </script>
   </body>
 </html>

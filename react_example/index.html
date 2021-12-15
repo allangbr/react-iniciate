@@ -91,13 +91,13 @@
         return (
           <div id="app">
             <Titulo titulo="Tabela de Bebidas"/>
-            <table id="tabela" class='styled-table'>
+            <table id="tabela" class="styled-table">
               <thead>
-                <tr>{cabecalho.map(c => <th>{c}</th>)}</tr>
+                <tr>{cabecalho.map((c, i) => <th key={i}>{c}</th>)}</tr>
               </thead>
 
               <tbody>
-                {conteudo.map(obj => <tr>{Object.values(obj).map(value => <th>{value}</th>)}</tr>)}
+                {conteudo.map((obj, indexA) => <tr key={indexA}>{Object.values(obj).map((values, indexV) => <th key={`${indexA}${indexV}`}>{values}</th>)}</tr>)}
               </tbody>
             </table>
             <ImagemBebidas/>

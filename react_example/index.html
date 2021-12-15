@@ -87,17 +87,17 @@
         )
       }
     
-      const TabelaBebidas = () => {
+      const TabelaBebidas = ({cabecalho, conteudo}) => {
         return (
           <div id="app">
             <Titulo titulo="Tabela de Bebidas"/>
             <table id="tabela" class='styled-table'>
               <thead>
-                <tr id="cabecalho">
-                </tr>
+                <tr>{cabecalho.map(c => <th>{c}</th>)}</tr>
               </thead>
 
-              <tbody id="conteudo">
+              <tbody>
+                {conteudo.map(obj => <tr>{Object.values(obj).map(value => <th>{value}</th>)}</tr>)}
               </tbody>
             </table>
             <ImagemBebidas/>
@@ -105,48 +105,14 @@
         )
       }
 
+      const valoresCabecalhos = ["Nome", "Marca", "Teste"]
+      const valoresConteudos = [{nome: "Havana", marca: "Engenho Anísio Santiago", teste: "teste"}, {nome: "Brahma", marca: "Puro Malte", teste: "Boa toda"}, {nome: "Devassa", marca: "Duplo Malte", teste: "Mais ou menos"}]
+      
       ReactDOM.render(
-        <TabelaBebidas/>
+        <TabelaBebidas cabecalho={valoresCabecalhos} conteudo={valoresConteudos}/>
         ,
         document.getElementById('app')
-      )
-      
-      const valoresCabecalhos = ["Nome", "Marca", "Teste"]
-
-      const MontaCabecalho = (cabecalhos) => {
-        let tam = cabecalhos.length;
-        let result = '';
-        for(let i=0; i<tam; i++){
-          result += `<th>${cabecalhos[i]}</th>`
-        }
-        return (result)
-      }
-
-      let textCabecalho = MontaCabecalho(valoresCabecalhos);
-      document.getElementById('cabecalho').innerHTML = textCabecalho;
-
-      
-      const valoresConteudos = [["Havana", "Engenho Anísio Santiago", "teste"], ["Brahma", "Puro Malte", "Boa toda"], ["Devassa", "Duplo Malte", "Mais ou menos"]]
-
-      const MontaConteudo = (conteudos) => {
-        let tam = conteudos.length;
-        let result = '';
-        
-        for(let i=0; i<tam; i++){
-          let tam1 = conteudos[i].length;
-          result += '<tr>'
-          for(let j=0; j<tam1; j++){
-            result += `<th>${conteudos[i][j]}</th>`
-          }
-          result += '</tr>';
-        }
-        result += '</tr>';
-        return (result)
-      }
-
-      let textConteudo = MontaConteudo(valoresConteudos);
-      document.getElementById('conteudo').innerHTML = textConteudo;
-      
+      )  
     </script>
   </body>
 </html>
